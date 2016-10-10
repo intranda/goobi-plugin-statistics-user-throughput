@@ -1,0 +1,107 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:composite="http://xmlns.jcp.org/jsf/composite" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:x="http://myfaces.apache.org/tomahawk" xmlns:intranda="http://xmlns.jcp.org/jsf/composite/composites" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <composite:interface>
+    </composite:interface>
+
+    <composite:implementation>
+
+        <h:form id="statisticplugin">
+
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="box box-color lightgrey box-bordered">
+                        <div class="box-title">
+                            <h3>
+                                <i class="fa fa-pie-chart"></i>
+                                <h:outputText value="#{msgs[StatisticalQuestionBean.currentPlugin.title]}" />
+                            </h3>
+                        </div>
+                        <div class="box-content">
+                            <h:inputText value="#{StatisticalQuestionBean.data}" id="datafield" style="display:none" />
+
+                            <!-- start-, enddate, interval -->
+                            <div class="row">
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <h:outputLabel for="cal01a" styleClass="control-label" value="#{msgs.zeitraum} #{msgs.from}" />
+                                        <h:panelGroup style="display:block">
+                                            <intranda:formInputCalendar3 id="cal01a" name="startdate" field="#{StatisticalQuestionBean.sourceDateFrom}" required="false" />
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <h:outputLabel for="cal02a" styleClass="control-label" value="#{msgs.to}" />
+                                        <h:panelGroup style="display:block">
+                                            <intranda:formInputCalendar3 id="cal02a" name="enddate" field="#{StatisticalQuestionBean.sourceDateTo}" required="false" />
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <h:outputLabel for="field02a" styleClass="control-label" value="#{msgs.einheiten}" />
+                                        <h:selectOneMenu id="field02a" value="#{StatisticalQuestionBean.currentPlugin.interval}" styleClass="form-control">
+                                            <f:selectItems value="#{StatisticalQuestionBean.currentPlugin.allIntervals}" var="unit" itemLabel="#{msgs[unit.label]}" itemValue="#{unit}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h:outputLabel for="field02b" styleClass="control-label" value="#{msgs.einheit}" />
+                                    <h:selectOneMenu id="field02b" value="#{StatisticalQuestionBean.currentPlugin.unit}" styleClass="form-control">
+                                        <f:selectItems value="#{StatisticalQuestionBean.currentPlugin.allUnits}" var="unit" itemLabel="#{msgs[unit.label]}" itemValue="#{unit}" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+
+                            <h:commandButton id="myStatisticButton" title="#{msgs.calculateStatistics}" value="#{msgs.calculateStatistics}" action="#{StatisticalQuestionBean.calculate}" styleClass="btn btn-primary">
+                                <f:ajax execute="@form" render="@form"></f:ajax>
+                            </h:commandButton>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <x:dataList value="#{StatisticalQuestionBean.currentPlugin.dataList}" var="stepData">
+                <h3>
+                    <h:outputText value="#{stepData.stepTitle}" />
+                </h3>
+                <h:outputText value="#{stepData.dataTable}" escape="false" />
+
+
+
+            </x:dataList>
+
+
+            <style>
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+</style>
+        </h:form>
+
+
+
+
+    </composite:implementation>
+
+</ui:composition>
+
+
