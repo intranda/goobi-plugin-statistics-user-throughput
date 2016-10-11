@@ -43,7 +43,7 @@ public class StepData {
 
     public String getDataTable() {
         StringBuilder sb = new StringBuilder();
-        sb.append("<table><tr><th></th>");
+        sb.append("<table class=\"table table-hover table-bordered user-throughput-table\"><tr><th></th>");
 
         for (String username : getUsernames()) {
             sb.append("<th>");

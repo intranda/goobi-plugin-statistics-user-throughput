@@ -14,8 +14,8 @@
                     <div class="box box-color lightgrey box-bordered">
                         <div class="box-title">
                             <h3>
-                                <i class="fa fa-pie-chart"></i>
-                                <h:outputText value="#{msgs[StatisticalQuestionBean.currentPlugin.title]}" />
+                                <i class="glyphicon-compass box-icon-fix"></i>
+                                <h:outputText value="#{msgs.auswahl2}" />
                             </h3>
                         </div>
                         <div class="box-content">
@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <h:outputLabel for="field02b" styleClass="control-label" value="#{msgs.einheit}" />
+                                    <h:outputLabel for="field02b" styleClass="control-label" value="#{msgs.anzeige}" />
                                     <h:selectOneMenu id="field02b" value="#{StatisticalQuestionBean.currentPlugin.unit}" styleClass="form-control">
                                         <f:selectItems value="#{StatisticalQuestionBean.currentPlugin.allUnits}" var="unit" itemLabel="#{msgs[unit.label]}" itemValue="#{unit}" />
                                     </h:selectOneMenu>
@@ -64,41 +64,72 @@
                                 <f:ajax execute="@form" render="@form"></f:ajax>
                             </h:commandButton>
 
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
 
-            <x:dataList value="#{StatisticalQuestionBean.currentPlugin.dataList}" var="stepData">
-                <h3>
-                    <h:outputText value="#{stepData.stepTitle}" />
-                </h3>
-                <h:outputText value="#{stepData.dataTable}" escape="false" />
+			<h:panelGroup rendered="#{StatisticalQuestionBean.currentPlugin.dataList.size() != 0}">
+				<div class="row">
+	                <div class="col-sm-12">
+	                    <div class="box box-bordered">
+	                        <div class="box-title">
+	                            <h3>
+	                                <i class="fa fa-pie-chart"></i>
+	                                <h:outputText value="#{msgs[StatisticalQuestionBean.currentPlugin.title]}" />
+	                            </h3>
+	                        </div>
+	                        <div class="box-content">
+	                        	<x:dataList value="#{StatisticalQuestionBean.currentPlugin.dataList}" var="stepData" rowCountVar="rowCount" rowIndexVar="rowIndex">
+					                <h4>
+					                    <h:outputText value="#{stepData.stepTitle}" />
+					                </h4>
+					                <h:outputText value="#{stepData.dataTable}" escape="false" />
+					                <br />
+								
+									<!-- insert Excel Download here -->
+									<!-- insert Excel Download here -->
+									<!-- insert Excel Download here -->
+									<!-- insert Excel Download here -->
+									<!-- insert Excel Download here -->
+									<!-- insert Excel Download here -->
+								
+									<h:commandLink action="#{NavigationForm.Reload}"
+										rendered="#{true}" styleClass="margin-bottom-10">
+										<span class="btn margin-right-10 fa fa-file-excel-o" />
+                                           <h:outputText value="#{msgs.createExcel}" />
+									</h:commandLink>
+									
+									<h:panelGroup rendered="#{rowCount != rowIndex +1}">
+										<hr style="margin:20px 0;"/>
+									</h:panelGroup>
+									
+									<!-- insert Excel Download here -->
+									<!-- insert Excel Download here -->
+									<!-- insert Excel Download here -->
+									<!-- insert Excel Download here -->
+									<!-- insert Excel Download here -->
+									<!-- insert Excel Download here -->									
+													
+					            </x:dataList>
+	 						</div>
+	                    </div>
+	                </div>
+	            </div>
+			</h:panelGroup>
+			
 
 
 
-            </x:dataList>
+            
 
 
             <style>
-table, th, td {
-    border: 1px solid black;
-}
-
-th, td {
-    text-align: center;
-    vertical-align: middle;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-</style>
+            	.box.box-bordered .table.table-bordered {
+    				border-right: 1px solid #ddd;
+				}
+			</style>
         </h:form>
-
-
-
 
     </composite:implementation>
 
