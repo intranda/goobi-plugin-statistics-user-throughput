@@ -1,10 +1,25 @@
 package de.intranda.goobi.plugins.statistics.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
+import de.sub.goobi.helper.FacesContextHelper;
 import lombok.Data;
+import net.sf.jxls.exception.ParsePropertyException;
+import net.sf.jxls.transformer.XLSTransformer;
 
 @Data
 public class StepData {
@@ -16,6 +31,8 @@ public class StepData {
     private List<String> usernames = new ArrayList<>();
 
     private StatisiticalUnit unit;
+
+    private static final String XLS_TEMPLATE_NAME = "/opt/digiverso/goobi/plugins/statistics/user_througput_template.xls";
 
     public void addInterval(IntervalData data) {
         ranges.add(data);
@@ -73,6 +90,72 @@ public class StepData {
         }
         sb.append("</table>");
         return sb.toString();
+    }
+
+    public void downloadExcel() {
+
+        try {
+            File tempFile = File.createTempFile("test", ".xls");
+
+//            List<String> headers = new ArrayList<>(usernames);
+//            headers.add(0, "");
+
+//            try (InputStream is = new FileInputStream(XLS_TEMPLATE_NAME)) {
+//                try (OutputStream os = new FileOutputStream(tempFile)) {
+//                    Context context = new Context();
+//                    context.putVar("headers", headers);
+//                    context.putVar("records", ranges);
+//                    JxlsHelper.getInstance().processTemplate(is, os, context);
+//                }
+//            }
+            Map map = new HashMap();
+            map.put("records", ranges);
+            map.put("header", usernames);
+            
+            XLSTransformer transformer = new XLSTransformer();
+            transformer.transformXLS(XLS_TEMPLATE_NAME, map, tempFile.getAbsolutePath());
+
+            
+            //            SimpleExporter exporter = new SimpleExporter();
+            //            try (OutputStream os = new FileOutputStream(tempFile)) {
+            //                if (unit == StatisiticalUnit.pages) {
+            //                  
+            //                    exporter.gridExport(headers, ranges, "label, userValues", os);
+            //                } else {
+            //                    exporter.gridExport(headers, ranges, "label, userValues.numberOfSteps", os);
+            //
+            //                }
+            //            }
+
+            if (tempFile.exists()) {
+                FacesContext facesContext = FacesContextHelper.getCurrentFacesContext();
+
+                HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
+                OutputStream out = response.getOutputStream();
+                response.setContentType("application/vnd.ms-excel");
+                response.setHeader("Content-Disposition", "attachment;filename=\"export.xls\"");
+                byte[] buf = new byte[8192];
+
+                InputStream is = new FileInputStream(tempFile);
+
+                int c = 0;
+
+                while ((c = is.read(buf, 0, buf.length)) > 0) {
+                    out.write(buf, 0, c);
+                    out.flush();
+                }
+
+                out.flush();
+                is.close();
+                facesContext.responseComplete();
+
+                tempFile.delete();
+
+            }
+
+        } catch (IOException | ParsePropertyException | InvalidFormatException e) {
+        }
+
     }
 
 }

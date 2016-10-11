@@ -87,14 +87,7 @@
 					                <h:outputText value="#{stepData.dataTable}" escape="false" />
 					                <br />
 								
-									<!-- insert Excel Download here -->
-									<!-- insert Excel Download here -->
-									<!-- insert Excel Download here -->
-									<!-- insert Excel Download here -->
-									<!-- insert Excel Download here -->
-									<!-- insert Excel Download here -->
-								
-									<h:commandLink action="#{NavigationForm.Reload}"
+									<h:commandLink action="#{stepData.downloadExcel}"
 										rendered="#{true}" styleClass="margin-bottom-10">
 										<span class="btn margin-right-10 fa fa-file-excel-o" />
                                            <h:outputText value="#{msgs.createExcel}" />
@@ -102,14 +95,7 @@
 									
 									<h:panelGroup rendered="#{rowCount != rowIndex +1}">
 										<hr style="margin:20px 0;"/>
-									</h:panelGroup>
-									
-									<!-- insert Excel Download here -->
-									<!-- insert Excel Download here -->
-									<!-- insert Excel Download here -->
-									<!-- insert Excel Download here -->
-									<!-- insert Excel Download here -->
-									<!-- insert Excel Download here -->									
+									</h:panelGroup>					
 													
 					            </x:dataList>
 	 						</div>
@@ -117,12 +103,7 @@
 	                </div>
 	            </div>
 			</h:panelGroup>
-			
-
-
-
-            
-
+          
 
             <style>
             	.box.box-bordered .table.table-bordered {
