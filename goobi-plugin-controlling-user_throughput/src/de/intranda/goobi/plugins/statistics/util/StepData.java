@@ -18,10 +18,12 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import de.sub.goobi.helper.FacesContextHelper;
 import lombok.Data;
+import lombok.extern.log4j.Log4j;
 import net.sf.jxls.exception.ParsePropertyException;
 import net.sf.jxls.transformer.XLSTransformer;
 
 @Data
+@Log4j
 public class StepData {
 
     private String stepTitle;
@@ -95,60 +97,44 @@ public class StepData {
     public void downloadExcel() {
 
         try {
+            log.info("Create temporary file");
             File tempFile = File.createTempFile("test", ".xls");
 
-//            List<String> headers = new ArrayList<>(usernames);
-//            headers.add(0, "");
-
-//            try (InputStream is = new FileInputStream(XLS_TEMPLATE_NAME)) {
-//                try (OutputStream os = new FileOutputStream(tempFile)) {
-//                    Context context = new Context();
-//                    context.putVar("headers", headers);
-//                    context.putVar("records", ranges);
-//                    JxlsHelper.getInstance().processTemplate(is, os, context);
-//                }
-//            }
             Map map = new HashMap();
             map.put("records", ranges);
             map.put("header", usernames);
-            
+            log.info("Add data to XLSTransformer");
             XLSTransformer transformer = new XLSTransformer();
+
             transformer.transformXLS(XLS_TEMPLATE_NAME, map, tempFile.getAbsolutePath());
 
-            
-            //            SimpleExporter exporter = new SimpleExporter();
-            //            try (OutputStream os = new FileOutputStream(tempFile)) {
-            //                if (unit == StatisiticalUnit.pages) {
-            //                  
-            //                    exporter.gridExport(headers, ranges, "label, userValues", os);
-            //                } else {
-            //                    exporter.gridExport(headers, ranges, "label, userValues.numberOfSteps", os);
-            //
-            //                }
-            //            }
-
+            log.info("Converted data to excel file");
             if (tempFile.exists()) {
+                log.info("Created file exists. Prepare download");
                 FacesContext facesContext = FacesContextHelper.getCurrentFacesContext();
-
+                log.info("Get facesContext");
                 HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
+                log.info("Get HttpServletResponse");
                 OutputStream out = response.getOutputStream();
+                log.info("Get OutputStream");
                 response.setContentType("application/vnd.ms-excel");
                 response.setHeader("Content-Disposition", "attachment;filename=\"export.xls\"");
+                log.info("Set response header");
                 byte[] buf = new byte[8192];
 
                 InputStream is = new FileInputStream(tempFile);
-
+                log.info("Read temporary file");
                 int c = 0;
 
                 while ((c = is.read(buf, 0, buf.length)) > 0) {
                     out.write(buf, 0, c);
                     out.flush();
                 }
-
+                log.info("Write temporary file to output stream");
                 out.flush();
                 is.close();
                 facesContext.responseComplete();
-
+                log.info("Delete temporary file");
                 tempFile.delete();
 
             }
