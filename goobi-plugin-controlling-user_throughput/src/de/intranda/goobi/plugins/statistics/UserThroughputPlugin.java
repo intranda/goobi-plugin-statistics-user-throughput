@@ -119,7 +119,7 @@ public class UserThroughputPlugin extends AbstractStatisticsPlugin implements IS
                         }
 
                         UserData userData = new UserData();
-                        userData.setUsername(user.getNachVorname());
+                        userData.setUsername(user.getNachVorname() + " (" + user.getLogin()+ ")");
                         userData.setNumberOfImages(numberOfImages);
                         userData.setNumberOfSteps(numberOfSteps);
 

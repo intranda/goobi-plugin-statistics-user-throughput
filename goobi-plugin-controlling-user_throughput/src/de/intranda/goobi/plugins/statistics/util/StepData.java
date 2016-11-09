@@ -34,7 +34,9 @@ public class StepData {
 
     private StatisiticalUnit unit;
 
-    private static final String XLS_TEMPLATE_NAME = "/opt/digiverso/goobi/plugins/statistics/user_througput_template.xls";
+    private static final String XLS_TEMPLATE_NAME_PAGES = "/opt/digiverso/goobi/plugins/statistics/user_througput_template.xls";
+
+    private static final String XLS_TEMPLATE_NAME_PROCESSES = "/opt/digiverso/goobi/plugins/statistics/user_througput_template_process.xls";
 
     public void addInterval(IntervalData data) {
         ranges.add(data);
@@ -100,14 +102,16 @@ public class StepData {
             log.info("Create temporary file");
             File tempFile = File.createTempFile("test", ".xls");
 
-            Map map = new HashMap();
+            Map<String, Object> map = new HashMap<>();
             map.put("records", ranges);
             map.put("header", usernames);
             log.info("Add data to XLSTransformer");
             XLSTransformer transformer = new XLSTransformer();
-
-            transformer.transformXLS(XLS_TEMPLATE_NAME, map, tempFile.getAbsolutePath());
-
+            if (unit == StatisiticalUnit.pages) {
+                transformer.transformXLS(XLS_TEMPLATE_NAME_PAGES, map, tempFile.getAbsolutePath());
+            } else {
+                transformer.transformXLS(XLS_TEMPLATE_NAME_PROCESSES, map, tempFile.getAbsolutePath());
+            }
             log.info("Converted data to excel file");
             if (tempFile.exists()) {
                 log.info("Created file exists. Prepare download");
