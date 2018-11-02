@@ -152,9 +152,7 @@ public class UserThroughputPlugin extends AbstractStatisticsPlugin implements IS
 
     @Override
     public boolean getPermissions() {
-        // nur mit admin Rechten 
-        LoginBean bean = (LoginBean) Helper.getManagedBeanValue("#{LoginForm}");
-        return (bean.getMaximaleBerechtigung() == 1);
+        return true;
     }
 
 }
