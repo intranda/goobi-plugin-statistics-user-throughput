@@ -6,6 +6,10 @@
 	<artifactId>user-throughput</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
+    <modules>
+        <module>module-gui</module>
+        <module>module-main</module>
+    </modules>    
 	<distributionManagement>
 		<repository>
 			<id>intranda</id>
@@ -24,6 +28,13 @@
 			<artifactId>goobi-core-jar</artifactId>
 			<version>3.0</version>
 		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+            <scope>provided</scope>
+        </dependency>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
