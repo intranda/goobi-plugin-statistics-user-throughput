@@ -4,7 +4,7 @@
 	<artifactId>user-throughput-main</artifactId>
 	<version>1.0.0</version>
 	<properties>
-		<jar.name>plugin_intranda_statistics_user-throughput</jar.name>
+		<jar.name>plugin_intranda_statistics-user-throughput</jar.name>
 		<dest.folder>/opt/digiverso/goobi/plugins/statistics/</dest.folder>
 	</properties>
 	<parent>
