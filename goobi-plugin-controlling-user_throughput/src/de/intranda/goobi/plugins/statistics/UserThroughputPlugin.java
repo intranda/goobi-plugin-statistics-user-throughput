@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.goobi.beans.User;
-import org.goobi.managedbeans.LoginBean;
 import org.goobi.production.plugin.interfaces.AbstractStatisticsPlugin;
 import org.goobi.production.plugin.interfaces.IStatisticPlugin;
 import org.joda.time.format.DateTimeFormatter;
@@ -16,7 +15,6 @@ import de.intranda.goobi.plugins.statistics.util.IntervalData;
 import de.intranda.goobi.plugins.statistics.util.StatisiticalUnit;
 import de.intranda.goobi.plugins.statistics.util.StepData;
 import de.intranda.goobi.plugins.statistics.util.UserData;
-import de.sub.goobi.helper.Helper;
 import de.sub.goobi.helper.exceptions.DAOException;
 import de.sub.goobi.persistence.managers.ProcessManager;
 import de.sub.goobi.persistence.managers.UserManager;
@@ -76,11 +74,11 @@ public class UserThroughputPlugin extends AbstractStatisticsPlugin implements IS
             end = formatterISO8601Date.print(endDate.getTime());
         }
         try {
-            List<User> allUsers = (List<User>) UserManager.getUsers("nachname", "", 0, Integer.MAX_VALUE);
+            List<User> allUsers = UserManager.getUsers("nachname", "", 0, Integer.MAX_VALUE, null);
             for (User user : allUsers) {
                 String sql = "select DATE_FORMAT(BearbeitungsEnde, '" + interval.getSqlStatement()
-                        + "') as intervall,  schritte.titel, count(schritte.titel) as numProc, sum(prozesse.sortHelperImages) as numImages from schritte, prozesse where prozesse.ProzesseID = schritte.ProzesseID and Bearbeitungsstatus = 3 and BearbeitungsEnde BETWEEN '"
-                        + start + "' AND '" + end + "' and BearbeitungsBenutzerID = " + user.getId() + " group by titel, intervall";
+                + "') as intervall,  schritte.titel, count(schritte.titel) as numProc, sum(prozesse.sortHelperImages) as numImages from schritte, prozesse where prozesse.ProzesseID = schritte.ProzesseID and Bearbeitungsstatus = 3 and BearbeitungsEnde BETWEEN '"
+                + start + "' AND '" + end + "' and BearbeitungsBenutzerID = " + user.getId() + " group by titel, intervall";
                 List<Object> rawData = ProcessManager.runSQL(sql);
                 if (rawData != null && !rawData.isEmpty()) {
                     for (Object row : rawData) {
