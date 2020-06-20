@@ -87,4 +87,4 @@
             </configuration>
         </plugin></plugins>
 	</build>
-<scm><url>scm:git:ssh://git@gitea.intranda.com:goobi-workflow/goobi-plugin-controlling-user_throughput.git</url><connection>scm:git:ssh://git@gitea.intranda.com:goobi-workflow/goobi-plugin-controlling-user_throughput.git</connection></scm></project>
+<scm><url>scm:git:ssh://git@gitea.intranda.com:goobi-workflow/goobi-plugin-statistics-user_throughput.git</url><connection>scm:git:ssh://git@gitea.intranda.com:goobi-workflow/goobi-plugin-statistics-user_throughput.git</connection></scm></project>

@@ -1,4 +1,4 @@
-<project name="goobi-plugin-controlling-user_throughput" default="devbuild">
+<project name="goobi-plugin-statistics-user_throughput" default="devbuild">
 	<target name="devbuild">
 		<exec executable="mvn">
 			<arg value="package"/>
