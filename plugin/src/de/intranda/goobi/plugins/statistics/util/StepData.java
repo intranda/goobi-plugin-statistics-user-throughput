@@ -1,6 +1,5 @@
 package de.intranda.goobi.plugins.statistics.util;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,13 +13,13 @@ import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.jxls.common.Context;
+import org.jxls.transform.Transformer;
+import org.jxls.util.JxlsHelper;
 
 import de.sub.goobi.helper.FacesContextHelper;
 import lombok.Data;
 import lombok.extern.log4j.Log4j;
-import net.sf.jxls.exception.ParsePropertyException;
-import net.sf.jxls.transformer.XLSTransformer;
 
 @Data
 @Log4j
@@ -99,51 +98,39 @@ public class StepData {
     public void downloadExcel() {
 
         try {
-            log.info("Create temporary file");
-            File tempFile = File.createTempFile("test", ".xls");
 
             Map<String, Object> map = new HashMap<>();
             map.put("records", ranges);
             map.put("header", usernames);
             log.info("Add data to XLSTransformer");
-            XLSTransformer transformer = new XLSTransformer();
+            InputStream is;
             if (unit == StatisiticalUnit.pages) {
-                transformer.transformXLS(XLS_TEMPLATE_NAME_PAGES, map, tempFile.getAbsolutePath());
+                is = new FileInputStream(XLS_TEMPLATE_NAME_PAGES);
             } else {
-                transformer.transformXLS(XLS_TEMPLATE_NAME_PROCESSES, map, tempFile.getAbsolutePath());
+                is = new FileInputStream(XLS_TEMPLATE_NAME_PROCESSES);
             }
-            log.info("Converted data to excel file");
-            if (tempFile.exists()) {
-                log.info("Created file exists. Prepare download");
-                FacesContext facesContext = FacesContextHelper.getCurrentFacesContext();
-                log.info("Get facesContext");
-                HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
-                log.info("Get HttpServletResponse");
-                OutputStream out = response.getOutputStream();
-                log.info("Get OutputStream");
-                response.setContentType("application/vnd.ms-excel");
-                response.setHeader("Content-Disposition", "attachment;filename=\"export.xls\"");
-                log.info("Set response header");
-                byte[] buf = new byte[8192];
+            FacesContext facesContext = FacesContextHelper.getCurrentFacesContext();
+            HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
+            OutputStream out = response.getOutputStream();
+            response.setContentType("application/vnd.ms-excel");
+            response.setHeader("Content-Disposition", "attachment;filename=\"export.xlsx\"");
 
-                InputStream is = new FileInputStream(tempFile);
-                log.info("Read temporary file");
-                int c = 0;
-
-                while ((c = is.read(buf, 0, buf.length)) > 0) {
-                    out.write(buf, 0, c);
-                    out.flush();
+            Context context = new Context();
+            if (map != null) {
+                for (String key : map.keySet()) {
+                    context.putVar(key, map.get(key));
                 }
-                log.info("Write temporary file to output stream");
-                out.flush();
-                is.close();
-                facesContext.responseComplete();
-                log.info("Delete temporary file");
-                tempFile.delete();
-
             }
+            JxlsHelper jxlsHelper = JxlsHelper.getInstance();
+            Transformer transformer = jxlsHelper.createTransformer(is, out);
 
-        } catch (IOException | ParsePropertyException | InvalidFormatException e) {
+            jxlsHelper.processTemplate(context, transformer);
+
+            out.flush();
+            is.close();
+            facesContext.responseComplete();
+
+        } catch (IOException e) {
         }
 
     }
