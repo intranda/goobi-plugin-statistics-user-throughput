@@ -11,10 +11,15 @@ public class UserData implements Comparable<UserData> {
 
     private int numberOfImages;
     
+    private boolean useImages = true;
+
     @Override
     public int compareTo(UserData arg0) {
         return username.compareTo(arg0.getUsername());
     }
     
+    public int getValue() {
+        return useImages ? numberOfImages : numberOfSteps;
+    }
     
 }

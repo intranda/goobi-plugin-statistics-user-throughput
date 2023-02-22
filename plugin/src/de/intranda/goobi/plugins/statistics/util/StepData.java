@@ -83,8 +83,10 @@ public class StepData {
                 sb.append("<td>");
                 if (unit == StatisiticalUnit.pages) {
                     sb.append(userData.getNumberOfImages());
+                    userData.setUseImages(true);
                 } else {
                     sb.append(userData.getNumberOfSteps());
+                    userData.setUseImages(false);
                 }
                 sb.append("</td>");
             }
