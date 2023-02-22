@@ -33,9 +33,9 @@ public class StepData {
 
     private StatisiticalUnit unit;
 
-    private static final String XLS_TEMPLATE_NAME_PAGES = "/opt/digiverso/goobi/plugins/statistics/user_througput_template.xls";
+    private static final String XLS_TEMPLATE_NAME_PAGES = "/opt/digiverso/goobi/plugins/statistics/user_throughput_template.xls";
 
-    private static final String XLS_TEMPLATE_NAME_PROCESSES = "/opt/digiverso/goobi/plugins/statistics/user_througput_template_process.xls";
+    private static final String XLS_TEMPLATE_NAME_PROCESSES = "/opt/digiverso/goobi/plugins/statistics/user_throughput_template_process.xls";
 
     public void addInterval(IntervalData data) {
         ranges.add(data);
