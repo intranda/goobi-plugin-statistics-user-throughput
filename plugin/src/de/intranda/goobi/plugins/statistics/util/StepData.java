@@ -33,9 +33,9 @@ public class StepData {
 
     private StatisiticalUnit unit;
 
-    private static final String XLS_TEMPLATE_NAME_PAGES = "/opt/digiverso/goobi/plugins/statistics/user_throughput_template.xls";
+    private static final String XLS_TEMPLATE_NAME_PAGES = "/opt/digiverso/goobi/plugins/statistics/user_throughput_template.xlsx";
 
-    private static final String XLS_TEMPLATE_NAME_PROCESSES = "/opt/digiverso/goobi/plugins/statistics/user_throughput_template_process.xls";
+    private static final String XLS_TEMPLATE_NAME_PROCESSES = "/opt/digiverso/goobi/plugins/statistics/user_throughput_template_process.xlsx";
 
     public void addInterval(IntervalData data) {
         ranges.add(data);
@@ -114,8 +114,8 @@ public class StepData {
             FacesContext facesContext = FacesContextHelper.getCurrentFacesContext();
             HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
             OutputStream out = response.getOutputStream();
-            response.setContentType("application/vnd.ms-excel");
-            response.setHeader("Content-Disposition", "attachment;filename=\"export.xls\"");
+            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.setHeader("Content-Disposition", "attachment;filename=\"export.xlsx\"");
 
             Context context = new Context();
             if (map != null) {
