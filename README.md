@@ -29,7 +29,7 @@ Zur Installation des Plugins müssen folgende Dateien installiert werden:
 
 ## Konfiguration des Plugins
 
-Dieser Plugin braucht keine weitere Konfiguration.
+Dieses Plugin braucht keine weitere Konfiguration.
 
 ## Bedienung des Plugins
 
