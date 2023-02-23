@@ -115,7 +115,7 @@ public class StepData {
             HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
             OutputStream out = response.getOutputStream();
             response.setContentType("application/vnd.ms-excel");
-            response.setHeader("Content-Disposition", "attachment;filename=\"export.xlsx\"");
+            response.setHeader("Content-Disposition", "attachment;filename=\"export.xls\"");
 
             Context context = new Context();
             if (map != null) {
