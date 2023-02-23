@@ -23,8 +23,8 @@ Zur Installation des Plugins müssen folgende Dateien installiert werden:
 ```bash
 /opt/digiverso/goobi/plugins/GUI/plugin_intranda_statistics-user-throughput-GUI.jar
 /opt/digiverso/goobi/plugins/statistics/plugin_intranda_statistics-user-throughput.jar
-/opt/digiverso/goobi/plugins/statistics/user_throughput_template.xls
-/opt/digiverso/goobi/plugins/statistics/user_throughput_template_process.xls
+/opt/digiverso/goobi/plugins/statistics/user_throughput_template.xlsx
+/opt/digiverso/goobi/plugins/statistics/user_throughput_template_process.xlsx
 ```
 
 ## Konfiguration des Plugins
