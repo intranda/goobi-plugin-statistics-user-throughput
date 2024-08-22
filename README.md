@@ -12,7 +12,7 @@ More information about the functionality of this plugin and the complete documen
 
 Detail                      | Description
 --------------------------- | ----------------------
-**Plugin identifier**       | {{PLUGIN_IDENTIFIER}}
+**Plugin identifier**       | intranda_statistics_user_througput
 **Plugin type**             | statistics
 **Licence**                 | GPL 2.0 or newer
 **Documentation (German)**  | https://docs.goobi.io/workflow-plugins/v/eng/statistics/goobi-plugin-statistics-user-throughput
