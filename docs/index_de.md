@@ -1,8 +1,8 @@
 ---
-title: Erfassung der Nutzer Durchsätze
+title: Visualisierung des Durchsatzes pro Nutzer
 identifier: intranda_statistics_user_througput
-published: false
-description: Dies ist eine technische Dokumentation für das Plugin zur Analyse der Nutzer Durchsätze
+published: true
+description: Statistik-Plugin zur Visualisierung der Nutzerdurchsätze
 ---
 ## Einführung
 Die Vorliegende Dokumentation beschreibt die Installation und den Einsatz des Durchsatz pro Nutzer Plugins.
@@ -24,8 +24,6 @@ Dieses Plugin braucht keine weitere Konfiguration.
 ## Bedienung des Plugins
 
 Um den Zeitraum der Auswertung zu begrenzen, können die beiden Felder `Zeitraum von` und `Zeitraum bis` für das Startdatum und Enddatum genutzt werden. Hier kann ein Datum in der Form `YYYY-MM-DD` angegeben werden. Beide Angaben sind optional. Wenn das Startdatum nicht ausgefüllt wurde, gilt das Datum, an dem der erste Schritt abgeschlossen wurde. Fehlt das Enddatum, dann wird der aktuelle Zeitpunkt genutzt.
-
-![Auswahl des Zeitraums](screen1_de.png)
 
 Im Feld `Einheit` wird festgelegt, in welchen Zeiträumen die Auswertung zusammengefasst werden soll. Hier kann aus den Werten `Jahre`, `Monate`, `Wochen` oder `Tage` gewählt werden.
 
