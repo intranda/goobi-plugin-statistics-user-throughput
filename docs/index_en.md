@@ -29,3 +29,5 @@ In the `Unit` field, you can specify the time intervals in which the evaluation 
 In the `Display` field, you can specify which figures should be displayed. You can choose from `Pages` or `Processes`.
 
 After clicking the `Calculate Statistics` button, the user throughput will be displayed in detailed tables. Below each table, there is also a link to download the table as an Excel file.
+
+![Screenshot of the statistik Plugin](screen1_en.png)
