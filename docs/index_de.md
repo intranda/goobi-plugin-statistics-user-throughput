@@ -5,7 +5,7 @@ published: true
 description: Statistik-Plugin zur Visualisierung der Nutzerdurchsätze
 ---
 ## Einführung
-Die Vorliegende Dokumentation beschreibt die Installation und den Einsatz des Durchsatz pro Nutzer Plugins.
+Die vorliegende Dokumentation beschreibt die Installation und den Einsatz des Durchsatz pro Nutzer Plugins.
 
 ## Installation
 Zur Installation des Plugins müssen folgende Dateien installiert werden:
