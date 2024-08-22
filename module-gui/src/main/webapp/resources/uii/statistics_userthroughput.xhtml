@@ -1,119 +1,106 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:composite="http://xmlns.jcp.org/jsf/composite" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:x="http://myfaces.apache.org/tomahawk" xmlns:intranda="http://xmlns.jcp.org/jsf/composite/composites" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:x="http://myfaces.apache.org/tomahawk"
+    xmlns:intranda="http://xmlns.jcp.org/jsf/composite/compositesPG"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <composite:interface>
     </composite:interface>
-
     <composite:implementation>
-
-        <h:form id="statisticplugin">
-
-
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="box box-color lightgrey box-bordered">
-                        <div class="box-title">
-                            <h3>
-                                <i class="glyphicon-compass box-icon-fix"></i>
-                                <h:outputText value="#{msgs.auswahl2}" />
-                            </h3>
+        <h:form id="statisticplugin" styleClass="row">
+            <div class="col-3">
+                <intranda:box
+                    icon="fa fa-compass"
+                    title="#{msgs.auswahl2}"
+                    boxForm="true"
+                    boxPadding="false"
+                    boxType="#{StatisticalQuestionBean.currentPlugin.dataList.size() != 0 ? 'neutral' : 'primary'}">
+                    <h:inputText value="#{StatisticalQuestionBean.data}" id="datafield" style="display:none" />
+                    <!-- start-, enddate, interval -->
+                    <div class="form-row">
+                        <div class="form-label">
+                            <h:outputLabel for="cal01a" value="#{msgs.zeitraum} #{msgs.from}" />
                         </div>
-                        <div class="box-content">
-                            <h:inputText value="#{StatisticalQuestionBean.data}" id="datafield" style="display:none" />
-
-                            <!-- start-, enddate, interval -->
-                            <div class="row">
-
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <h:outputLabel for="cal01a" styleClass="control-label" value="#{msgs.zeitraum} #{msgs.from}" />
-                                        <h:panelGroup style="display:block">
-                                            <intranda:formInputCalendar3 id="cal01a" name="startdate" field="#{StatisticalQuestionBean.sourceDateFrom}" required="false" />
-                                        </h:panelGroup>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <h:outputLabel for="cal02a" styleClass="control-label" value="#{msgs.to}" />
-                                        <h:panelGroup style="display:block">
-                                            <intranda:formInputCalendar3 id="cal02a" name="enddate" field="#{StatisticalQuestionBean.sourceDateTo}" required="false" />
-                                        </h:panelGroup>
-                                    </div>
-                                </div>
-
-
-
-
-                                <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <h:outputLabel for="field02a" styleClass="control-label" value="#{msgs.einheiten}" />
-                                        <h:selectOneMenu id="field02a" value="#{StatisticalQuestionBean.currentPlugin.interval}" styleClass="form-control">
-                                            <f:selectItems value="#{StatisticalQuestionBean.currentPlugin.allIntervals}" var="unit" itemLabel="#{msgs[unit.label]}" itemValue="#{unit}" />
-                                        </h:selectOneMenu>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <h:outputLabel for="field02b" styleClass="control-label" value="#{msgs.anzeige}" />
-                                    <h:selectOneMenu id="field02b" value="#{StatisticalQuestionBean.currentPlugin.unit}" styleClass="form-control">
-                                        <f:selectItems value="#{StatisticalQuestionBean.currentPlugin.allUnits}" var="unit" itemLabel="#{msgs[unit.label]}" itemValue="#{unit}" />
-                                    </h:selectOneMenu>
-                                </div>
-                            </div>
-
-                            <h:commandButton id="myStatisticButton" title="#{msgs.calculateStatistics}" value="#{msgs.calculateStatistics}" action="#{StatisticalQuestionBean.calculate}" styleClass="btn btn-primary">
-                                <f:ajax execute="@form" render="@form"></f:ajax>
-                            </h:commandButton>
-
+                        <div class="form-input">
+                            <intranda:formInputCalendar3 id="cal01a" name="startdate" field="#{StatisticalQuestionBean.sourceDateFrom}" required="false" />
                         </div>
                     </div>
-                </div>
+                    <div class="form-row">
+                        <div class="form-label">
+                            <h:outputLabel for="cal02a" value="#{msgs.to}" />
+                        </div>
+                        <div class="form-input">
+                            <intranda:formInputCalendar3 id="cal02a" name="enddate" field="#{StatisticalQuestionBean.sourceDateTo}" required="false" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-label">
+                            <h:outputLabel for="field02a" value="#{msgs.einheiten}" />
+                        </div>
+                        <div class="form-input">
+                            <h:selectOneMenu id="field02a" value="#{StatisticalQuestionBean.currentPlugin.interval}" styleClass="form-select">
+                                <f:selectItems value="#{StatisticalQuestionBean.currentPlugin.allIntervals}" var="unit" itemLabel="#{msgs[unit.label]}" itemValue="#{unit}" />
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-label">
+                            <h:outputLabel for="field02b" value="#{msgs.anzeige}" />
+                        </div>
+                        <div class="form-input">
+                            <h:selectOneMenu id="field02b" value="#{StatisticalQuestionBean.currentPlugin.unit}" styleClass="form-select">
+                                <f:selectItems value="#{StatisticalQuestionBean.currentPlugin.allUnits}" var="unit" itemLabel="#{msgs[unit.label]}" itemValue="#{unit}" />
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="box__actions">
+                        <h:commandButton
+                            id="myStatisticButton"
+                            title="#{msgs.calculateStatistics}"
+                            value="#{msgs.calculateStatistics}"
+                            action="#{StatisticalQuestionBean.calculate}"
+                            styleClass="btn btn-#{StatisticalQuestionBean.currentPlugin.dataList.size() != 0 ? 'blank' : 'primary'}">
+                            <f:ajax execute="@form" render="@form"></f:ajax>
+                        </h:commandButton>
+                    </div>
+                </intranda:box>
             </div>
-
-			<h:panelGroup rendered="#{StatisticalQuestionBean.currentPlugin.dataList.size() != 0}">
-				<div class="row">
-	                <div class="col-sm-12">
-	                    <div class="box box-bordered">
-	                        <div class="box-title">
-	                            <h3>
-	                                <i class="fa fa-pie-chart"></i>
-	                                <h:outputText value="#{msgs[StatisticalQuestionBean.currentPlugin.title]}" />
-	                            </h3>
-	                        </div>
-	                        <div class="box-content">
-	                        	<x:dataList value="#{StatisticalQuestionBean.currentPlugin.dataList}" var="stepData" rowCountVar="rowCount" rowIndexVar="rowIndex">
-					                <h4>
-					                    <h:outputText value="#{stepData.stepTitle}" />
-					                </h4>
-					                <h:outputText value="#{stepData.dataTable}" escape="false" />
-					                <br />
-								
-									<h:commandLink action="#{stepData.downloadExcel}"
-										rendered="#{true}" styleClass="margin-bottom-10">
-										<span class="btn margin-right-10 fa fa-file-excel-o" />
-                                           <h:outputText value="#{msgs.createExcel}" />
-									</h:commandLink>
-									
-									<h:panelGroup rendered="#{rowCount != rowIndex +1}">
-										<hr style="margin:20px 0;"/>
-									</h:panelGroup>					
-													
-					            </x:dataList>
-	 						</div>
-	                    </div>
-	                </div>
-	            </div>
-			</h:panelGroup>
-          
-
-            <style>
-            	.box.box-bordered .table.table-bordered {
-    				border-right: 1px solid #ddd;
-				}
-			</style>
+            <div class="col-9">
+                <intranda:box
+                    icon="fa fa-pie-chart"
+                    title="#{msgs[StatisticalQuestionBean.currentPlugin.title]}"
+                    boxPadding="true"
+                    boxType="primary"
+                    rendered="#{StatisticalQuestionBean.currentPlugin.dataList.size() != 0}">
+                    <x:dataList value="#{StatisticalQuestionBean.currentPlugin.dataList}" var="stepData" rowCountVar="rowCount" rowIndexVar="rowIndex">
+                        <h4>
+                            <h:outputText value="#{stepData.stepTitle}" />
+                        </h4>
+                        <div class="gw-table">
+                            <div class="gw-table__wrapper">
+                                <h:outputText value="#{stepData.dataTable}" escape="false" />
+                            </div>
+                        </div>
+                        <div class="box__actions">
+                            <h:commandLink
+                                action="#{stepData.downloadExcel}"
+                                rendered="#{true}"
+                                styleClass="btn btn-blank">
+                                <span class="fa fa-file-excel-o" />
+                                <span>
+                                    <h:outputText value="#{msgs.createExcel}" />
+                                </span>
+                            </h:commandLink>
+                        </div>
+                        <h:panelGroup rendered="#{rowCount != rowIndex +1}">
+                            <hr style="margin:20px 0;"/>
+                        </h:panelGroup>
+                    </x:dataList>
+                </intranda:box>
+            </div>
         </h:form>
-
     </composite:implementation>
-
 </ui:composition>
-
-
