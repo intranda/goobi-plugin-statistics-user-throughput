@@ -1,3 +1,4 @@
+---
 title: Visualisation of the throughput per user
 identifier: intranda_statistics_user_througput
 published: true
