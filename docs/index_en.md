@@ -1,8 +1,7 @@
----
-title: Recording User Throughput
-identifier: intranda_statistics_user_throughput
-published: false
-description: This is a technical documentation for the plugin used for analyzing user throughput.
+title: Visualisation of the throughput per user
+identifier: intranda_statistics_user_througput
+published: true
+description: Statistics plugin for visualising user throughput
 ---
 ## Introduction
 This documentation describes the installation and usage of the User Throughput Plugin.
@@ -23,8 +22,6 @@ This plugin does not require any additional configuration.
 ## Using the Plugin
 
 To limit the evaluation period, you can use the `Start Date` and `End Date` fields to specify the start and end dates. A date in the format `YYYY-MM-DD` can be entered. Both fields are optional. If the start date is not specified, the date when the first step was completed will be used. If the end date is not specified, the current time will be used.
-
-![Select Time Period](screen1_en.png)
 
 In the `Unit` field, you can specify the time intervals in which the evaluation should be summarized. You can choose from `Years`, `Months`, `Weeks`, or `Days`.
 
