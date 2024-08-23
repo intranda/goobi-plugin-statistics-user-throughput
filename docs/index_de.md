@@ -31,4 +31,4 @@ Im Feld `Anzeige` wird festgelegt, welche Zahlen angezeigt werden sollen. Hier k
 
 Nach einem Klick an den Knopf `Statistik berechnen` werden der Durchsatz pro Nutzer in Tabellen detailliert angezeigt. Unter jeder Tabelle gibt es auch einen Link, wodurch man diese Tabelle als Excel-Datei herunterladen kann.
 
-![Bild des Statistik Plugins](screen1_de.png)
+![Geöffnetes Plugin mit einer Ergebnisanzeige](screen1_de.png)
