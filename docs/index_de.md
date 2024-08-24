@@ -30,3 +30,5 @@ Im Feld `Einheit` wird festgelegt, in welchen Zeiträumen die Auswertung zusamme
 Im Feld `Anzeige` wird festgelegt, welche Zahlen angezeigt werden sollen. Hier kann aus den Werten `Seiten` oder `Vorgänge` gewählt werden.
 
 Nach einem Klick an den Knopf `Statistik berechnen` werden der Durchsatz pro Nutzer in Tabellen detailliert angezeigt. Unter jeder Tabelle gibt es auch einen Link, wodurch man diese Tabelle als Excel-Datei herunterladen kann.
+
+![Geöffnetes Plugin mit einer Ergebnisanzeige](screen1_de.png)
