@@ -63,14 +63,14 @@ public class StepData {
 
     public String getDataTable() {
         StringBuilder sb = new StringBuilder();
-        sb.append("<table class=\"table table-hover table-bordered user-throughput-table\"><tr><th></th>");
+        sb.append("<table class=\"table table-hover table-bordered user-throughput-table\"><tr><thead><th></th>");
 
         for (String username : getUsernames()) {
             sb.append("<th>");
             sb.append(username);
             sb.append("</th>");
         }
-        sb.append("</tr>");
+        sb.append("</tr></thead>");
         Collections.sort(ranges);
         for (IntervalData interval : ranges) {
             sb.append("<tr>");

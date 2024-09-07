@@ -1,44 +1,39 @@
----
-description: >-
-  Dieses Statistik-Plugin ermittelt den Durchsatz der Bearbeitungen pro Nutzer
-  innerhalb eines spezifischen Zeitraums .
----
+# Goobi workflow Plugin: goobi-plugin-statistics-user-throughput
 
-# Durchsatz pro Nutzer
+<img src="https://goobi.io/wp-content/uploads/logo_goobi_plugin.png" align="right" style="margin:0 0 20px 20px;" alt="Plugin for Goobi workflow" width="175" height="109">
 
-## Übersicht
+This Statistics plugin for Goobi workflow offers a functionality to visualize the throughput per user.
 
-| Details |  |
-| :--- | :--- |
-| Identifier | intranda\_statistics\_user\_throughput |
-| Source code | [https://gitea.intranda.com/goobi-workflow/goobi-plugin-statistics-user_throughput.git](https://gitea.intranda.com/goobi-workflow/goobi-plugin-statistics-user_throughput.git) |
-| Lizenz | GPL 2.0 oder neuer |
-| Kompatibilität | Goobi workflow 23.01 |
-| Dokumentationsdatum | 22.02.2023 |
+This is a plugin for Goobi workflow, the open source workflow tracking software for digitisation projects. More information about Goobi workflow is available under https://goobi.io. If you want to get in touch with the user community simply go to https://community.goobi.io.
 
-## Installation
+## Plugin details
 
-Zur Installation des Plugins müssen folgende Dateien installiert werden:
+More information about the functionality of this plugin and the complete documentation can be found in the central documentation area at https://docs.goobi.io
 
-```bash
-/opt/digiverso/goobi/plugins/GUI/plugin_intranda_statistics-user-throughput-GUI.jar
-/opt/digiverso/goobi/plugins/statistics/plugin_intranda_statistics-user-throughput.jar
-/opt/digiverso/goobi/plugins/statistics/user_throughput_template.xlsx
-/opt/digiverso/goobi/plugins/statistics/user_throughput_template_process.xlsx
-```
+Detail                      | Description
+--------------------------- | ----------------------
+**Plugin identifier**       | intranda_statistics_user_througput
+**Plugin type**             | statistics
+**Licence**                 | GPL 2.0 or newer
+**Documentation (German)**  | https://docs.goobi.io/workflow-plugins/v/ger/statistics/goobi-plugin-statistics-user-throughput
+**Documentation (English)** | https://docs.goobi.io/workflow-plugins/v/eng/statistics/goobi-plugin-statistics-user-throughput
 
-## Konfiguration des Plugins
+## Goobi details
 
-Dieses Plugin braucht keine weitere Konfiguration.
+Goobi workflow is an open source web application to manage small and large digitisation projects mostly in cultural heritage institutions all around the world. More information about Goobi can be found here:
 
-## Bedienung des Plugins
+Detail                      | Description
+--------------------------- | ---------------------------
+**Goobi web site**          | https://www.goobi.io
+**Goobi community**         | https://community.goobi.io
+**Goobi documentation**     | https://docs.goobi.io
 
-Um den Zeitraum der Auswertung zu begrenzen, können die beiden Felder `Zeitraum von` und `Zeitraum bis` für das Startdatum und Enddatum genutzt werden. Hier kann ein Datum in der Form `YYYY-MM-DD` angegeben werden. Beide Angaben sind optional. Wenn das Startdatum nicht ausgefüllt wurde, gilt das Datum, an dem der erste Schritt abgeschlossen wurde. Fehlt das Enddatum, dann wird der aktuelle Zeitpunkt genutzt.
+## Development
 
-![Auswahl des Zeitraums](../.gitbook/assets/intranda_statistics_user_throughput_de.png)
+This plugin was developed by intranda. If you have any issues, feedback, question or if you are looking for more information about Goobi workflow, Goobi viewer and all our other developments that are used in digitisation projects please get in touch with us.  
 
-Im Feld `Einheit` wird festgelegt, in welchen Zeiträumen die Auswertung zusammengefasst werden soll. Hier kann aus den Werten `Jahre`, `Monate`, `Wochen` oder `Tage` gewählt werden.
-
-Im Feld `Anzeige` wird festgelegt, welche Zahlen angezeigt werden sollen. Hier kann aus den Werten `Seiten` oder `Vorgänge` gewählt werden.
-
-Nach einem Klick an den Knopf `Statistik berechnen` werden der Durchsatz pro Nutzer in Tabellen detailliert angezeigt. Unter jeder Tabelle gibt es auch einen Link, wodurch man diese Tabelle als Excel-Datei herunterladen kann.
+Contact                     | Details
+--------------------------- | ----------------------------------------------------
+**Company name**            | intranda GmbH
+**Address**                 | Bertha-von-Suttner-Str. 9, 37085 Göttingen, Germany
+**Web site**                | https://www.intranda.com
