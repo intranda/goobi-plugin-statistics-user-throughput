@@ -10,14 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletResponse;
-
-import org.jxls.common.Context;
-import org.jxls.transform.Transformer;
-import org.jxls.util.JxlsHelper;
+import org.jxls.transform.poi.JxlsPoiTemplateFillerBuilder;
 
 import de.sub.goobi.helper.FacesContextHelper;
+import io.goobi.workflow.xslt.JxlsOutputStream;
+import jakarta.faces.context.FacesContext;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.Data;
 import lombok.extern.log4j.Log4j;
 
@@ -117,17 +115,10 @@ public class StepData {
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             response.setHeader("Content-Disposition", "attachment;filename=\"export.xlsx\"");
 
-            Context context = new Context();
-            if (map != null) {
-                for (String key : map.keySet()) {
-                    context.putVar(key, map.get(key));
-                }
-            }
-            JxlsHelper jxlsHelper = JxlsHelper.getInstance();
-            Transformer transformer = jxlsHelper.createTransformer(is, out);
-
-            jxlsHelper.processTemplate(context, transformer);
-
+            JxlsPoiTemplateFillerBuilder.newInstance()
+                    .withTemplate(is)
+                    .build()
+                    .fill(map, new JxlsOutputStream(out));
             out.flush();
             is.close();
             facesContext.responseComplete();
