@@ -4,7 +4,6 @@
     xmlns:composite="http://xmlns.jcp.org/jsf/composite"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:x="http://myfaces.apache.org/tomahawk"
     xmlns:intranda="http://xmlns.jcp.org/jsf/composite/compositesPG"
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <composite:interface>
@@ -75,7 +74,7 @@
                     boxPadding="true"
                     boxType="primary"
                     rendered="#{StatisticalQuestionBean.currentPlugin.dataList.size() != 0}">
-                    <x:dataList value="#{StatisticalQuestionBean.currentPlugin.dataList}" var="stepData" rowCountVar="rowCount" rowIndexVar="rowIndex">
+                    <ui:repeat value="#{StatisticalQuestionBean.currentPlugin.dataList}" var="stepData" rowCountVar="rowCount" rowIndexVar="rowIndex">
                         <h4>
                             <h:outputText value="#{stepData.stepTitle}" />
                         </h4>
@@ -98,7 +97,7 @@
                         <h:panelGroup rendered="#{rowCount != rowIndex +1}">
                             <hr style="margin:20px 0;"/>
                         </h:panelGroup>
-                    </x:dataList>
+                    </ui:repeat>
                 </intranda:box>
             </div>
         </h:form>
