@@ -3,6 +3,10 @@ title: Visualisierung des Durchsatzes pro Nutzer
 identifier: intranda_statistics_user_througput
 published: true
 description: Statistik-Plugin zur Visualisierung der Nutzerdurchsätze
+keywords:
+    - Goobi workflow
+    - Plugin
+    - Statistics Plugin
 ---
 ## Einführung
 Die vorliegende Dokumentation beschreibt die Installation und den Einsatz des Durchsatz pro Nutzer Plugins.

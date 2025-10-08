@@ -3,6 +3,10 @@ title: Visualisation of the throughput per user
 identifier: intranda_statistics_user_througput
 published: true
 description: Statistics plugin for visualising user throughput
+keywords:
+    - Goobi workflow
+    - Plugin
+    - Statistics Plugin
 ---
 ## Introduction
 This documentation describes the installation and usage of the User Throughput Plugin.
