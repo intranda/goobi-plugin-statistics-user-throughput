@@ -5,14 +5,15 @@
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     xmlns:intranda="http://xmlns.jcp.org/jsf/composite/composites"
-    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:util="http://goobi.io/util">
     <composite:interface>
     </composite:interface>
     <composite:implementation>
         <h:form id="statisticplugin" styleClass="row">
             <div class="col-3">
                 <intranda:box
-                    icon="fa fa-compass"
+                    icon="compass"
                     title="#{msgs.auswahl2}"
                     boxForm="true"
                     boxPadding="false"
@@ -69,7 +70,7 @@
             </div>
             <div class="col-9">
                 <intranda:box
-                    icon="fa fa-pie-chart"
+                    icon="chart-pie"
                     title="#{msgs[StatisticalQuestionBean.currentPlugin.title]}"
                     boxPadding="true"
                     boxType="primary"
@@ -88,7 +89,7 @@
                                 action="#{stepData.downloadExcel}"
                                 rendered="#{true}"
                                 styleClass="btn btn-blank">
-                                <span class="fa fa-file-excel-o" />
+                                <util:icon icon="file-spreadsheet" />
                                 <span>
                                     <h:outputText value="#{msgs.createExcel}" />
                                 </span>
