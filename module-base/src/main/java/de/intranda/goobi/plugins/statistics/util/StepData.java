@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import org.apache.commons.text.StringEscapeUtils;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -65,7 +66,7 @@ public class StepData {
 
         for (String username : getUsernames()) {
             sb.append("<th>");
-            sb.append(username);
+            sb.append(StringEscapeUtils.escapeHtml4(username));
             sb.append("</th>");
         }
         sb.append("</tr></thead>");
@@ -73,7 +74,7 @@ public class StepData {
         for (IntervalData interval : ranges) {
             sb.append("<tr>");
             sb.append("<td>");
-            sb.append(interval.getLabel());
+            sb.append(StringEscapeUtils.escapeHtml4(interval.getLabel()));
             sb.append("</td>");
 
             interval.checkUserValues(getUsernames());
