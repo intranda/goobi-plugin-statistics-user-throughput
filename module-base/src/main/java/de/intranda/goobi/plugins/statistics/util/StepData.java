@@ -5,13 +5,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import org.apache.commons.text.StringEscapeUtils;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.jxls.transform.poi.JxlsPoiTemplateFillerBuilder;
+import org.owasp.html.HtmlPolicyBuilder;
+import org.owasp.html.PolicyFactory;
 
 import de.sub.goobi.helper.FacesContextHelper;
 import io.goobi.workflow.xslt.JxlsOutputStream;
@@ -23,6 +25,13 @@ import lombok.extern.log4j.Log4j;
 @Data
 @Log4j
 public class StepData {
+
+    private static final PolicyFactory SANITIZER = new HtmlPolicyBuilder()
+            .allowElements("b", "i", "em", "strong", "br", "p", "ul", "ol", "li",
+                    "table", "thead", "tbody", "tr", "td", "th", "span", "div")
+            .allowAttributes("class")
+            .globally()
+            .toFactory();
 
     private String stepTitle;
 
@@ -93,7 +102,8 @@ public class StepData {
             sb.append("</tr>");
         }
         sb.append("</table>");
-        return sb.toString();
+        String value = sb.toString();
+        return value == null ? null : SANITIZER.sanitize(value);
     }
 
     public void downloadExcel() {
